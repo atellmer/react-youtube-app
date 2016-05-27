@@ -1,0 +1,11 @@
+{
+  "name": "react-boilerplate",
+  "description": "my react-webpack-hmr-cssmodules boilerplate",
+  "authors": [
+    "AlexPlex <atellmer@gmail.com>"
+  ],
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^3.3.6"
+  }
+}
