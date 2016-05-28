@@ -49,6 +49,6 @@
     "react-redux": "^4.4.5",
     "react-router": "^2.4.1",
     "redux": "^3.5.2",
-    "youtube-api-search": "0.0.5"
+    "youtube-simple-search": "0.0.1"
   }
 }

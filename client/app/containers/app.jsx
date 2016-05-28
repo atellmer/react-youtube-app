@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
-import YTSearch from 'youtube-api-search';
+import yss from 'youtube-simple-search';
 
 import SearchBar from '../components/search-bar';
 import VideoList from '../components/video-list';
@@ -24,9 +24,9 @@ class App extends Component {
   }
 
   youTubeSearch(term) {
-    YTSearch({
+    yss({
       key: API_KEY,
-      term: term,
+      query: term,
       maxResults: 10
     },
       (videos) => {
