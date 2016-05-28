@@ -3,32 +3,26 @@ import React, { Component } from 'react';
 import style from './index.styl';
 
 class SearchBar extends Component {
-	
-	constructor() {
-		super();
-		
-		this.state = {
-			term: ''
-		};
-		
-		this.onChangeHandler = this.onChangeHandler.bind(this);
-	}
 
 	onChangeHandler(event) {
-		this.setState({
-			term: event.target.value
-		});
+		this.props.onChangeTerm(event.target.value);
 	}
-	
+
 	render() {
 		return (
-			<div>
-				<input 
-					type="text"
-					onChange={ this.onChangeHandler }
-					value={ this.state.term }
-				/>
-				Value of the input: { this.state.term }
+			<div className={style.searchBar}>
+				<div class="input-group">
+					<span class="input-group-addon" id="sizing-addon2"> 
+						<i class="material-icons icon">search</i>
+					</span>
+					<input
+						onChange={this.onChangeHandler.bind(this)}
+						type="text"
+						class="form-control"
+						placeholder="Search"
+						aria-describedby="sizing-addon2"
+						/>
+				</div>
 			</div>
 		);
 	}

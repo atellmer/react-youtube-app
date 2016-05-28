@@ -1,1 +1,16 @@
 @import 'nib'
+
+:local(.logo)
+	background-size cover
+	background-repeat no-repeat
+	background-position center
+	background-image url('../../resources/img/logo.png')
+	width (366 / 2)px
+	height (253 / 2)px
+	margin 20px auto
+	@media screen and (max-width: 992px)
+		width (366 / 3)px
+		height (253 / 3)px
+	@media screen and (max-width: 768px)
+		width (366 / 4)px
+		height (253 / 4)px

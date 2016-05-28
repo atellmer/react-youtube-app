@@ -10,28 +10,50 @@ import { API_KEY } from '../constants';
 
 
 class App extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.state = {
-      videos: []
+      videos: [],
+      selectedVideo: null
     };
+    
+     this.youTubeSearch('null');
+  }
 
-    YTSearch({ key: API_KEY, term: 'angular 2' }, (videos) => {
-      this.setState({ videos });
+  onChangeTermHandler(term) {
+      this.youTubeSearch(term);
+  }
+  
+  youTubeSearch(term) {
+    YTSearch({
+      key: API_KEY, 
+      term: term, 
+      maxResults: 10
+    }, 
+    (videos) => {
+      this.setState({
+        videos: videos,
+        selectedVideo: videos[0]
+      });
     });
   }
- 
+
+  onVideoSelectHandler(selectedVideo) {
+    this.setState({
+      selectedVideo: selectedVideo
+    });
+  }
 
   render() {
-    console.log(this.state.videos);
-    
-    
     return (
-      <div>
-        <SearchBar/>
-        <VideoDetail video={this.state.videos[0]}/>
-        <VideoList videos={this.state.videos}/>
+      <div className="container-fluid">
+        <div className={style.logo}></div>
+        <SearchBar onChangeTerm={this.onChangeTermHandler.bind(this) }/>
+        <VideoDetail video={this.state.selectedVideo}/>
+        <VideoList
+          onVideoSelect={this.onVideoSelectHandler.bind(this) }
+          videos={this.state.videos}/>
       </div>
     );
   }
