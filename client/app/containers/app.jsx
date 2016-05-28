@@ -18,7 +18,7 @@ class App extends Component {
       selectedVideo: null
     };
     
-     this.youTubeSearch('null');
+     this.youTubeSearch(null);
   }
 
   onChangeTermHandler(term) {
