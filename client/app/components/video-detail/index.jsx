@@ -3,9 +3,6 @@ import React, {Component} from 'react';
 import style from './index.styl';
 
 class VideoDetail extends Component {
-	constructor(props) {
-		super(props);
-	}
 	
 	render() {
 		const props = this.props.video;
@@ -19,8 +16,6 @@ class VideoDetail extends Component {
 			description: props.snippet.description,
 			url: `https://www.youtube.com/embed/${props.id.videoId}`
 		}
-		
-		console.log(data.url);
 	
 		return (
 			<div className={style.videoDetail}>

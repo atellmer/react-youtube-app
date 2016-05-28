@@ -4,6 +4,7 @@ import VideoListItem from '../video-list-item';
 
 
 class VideoList extends Component {
+	
 	render() {
 		const VideoListTemplate = this.props.videos.map((el) => {
 				return <VideoListItem 

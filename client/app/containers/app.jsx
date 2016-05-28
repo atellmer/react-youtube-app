@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import YTSearch from 'youtube-api-search';
 
@@ -10,6 +11,7 @@ import { API_KEY } from '../constants';
 
 
 class App extends Component {
+  
   constructor() {
     super();
 
@@ -17,26 +19,26 @@ class App extends Component {
       videos: [],
       selectedVideo: null
     };
-    
-     this.youTubeSearch(null);
+
+    this.youTubeSearch(null);
   }
 
-  onChangeTermHandler(term) {
-      this.youTubeSearch(term);
-  }
-  
   youTubeSearch(term) {
     YTSearch({
-      key: API_KEY, 
-      term: term, 
+      key: API_KEY,
+      term: term,
       maxResults: 10
-    }, 
-    (videos) => {
-      this.setState({
-        videos: videos,
-        selectedVideo: videos[0]
+    },
+      (videos) => {
+        this.setState({
+          videos: videos,
+          selectedVideo: videos[0]
+        });
       });
-    });
+  }
+  
+   onChangeTermHandler(term) {
+     _.debounce(() => this.youTubeSearch(term), 300)();
   }
 
   onVideoSelectHandler(selectedVideo) {
@@ -48,12 +50,12 @@ class App extends Component {
   render() {
     return (
       <div className="container-fluid">
-        <div className={style.logo}></div>
-        <SearchBar onChangeTerm={this.onChangeTermHandler.bind(this) }/>
-        <VideoDetail video={this.state.selectedVideo}/>
+        <div className={ style.logo }></div>
+        <SearchBar onChangeTerm={ this.onChangeTermHandler.bind(this) }/>
+        <VideoDetail video={ this.state.selectedVideo }/>
         <VideoList
-          onVideoSelect={this.onVideoSelectHandler.bind(this) }
-          videos={this.state.videos}/>
+          onVideoSelect={ this.onVideoSelectHandler.bind(this) }
+          videos={ this.state.videos }/>
       </div>
     );
   }
